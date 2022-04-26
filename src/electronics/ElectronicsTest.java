@@ -86,7 +86,13 @@ public class ElectronicsTest extends Utility {
         assertVerifyText(By.xpath("//h1[contains(text(),'Shopping cart')]"), "Shopping cart");
 
         //	2.13 Verify the quantity is 2
-        //assertVerifyText(By.xpath("//input[@type='text' and @value='2']"), "2");
+        // mouseHoverOnElement(By.xpath("//li[@id='topcartlink']/a/span[1]"));
+        // assertVerifyText(By.xpath("//span[@class='cart-qty']"), "(2)");
+        WebElement xyz = driver.findElement(By.xpath("//input[@class=\"qty-input\"]"));
+        // Get value attribute with getAttribute()
+        String qty = xyz.getAttribute("value");
+        // Verify the quantity
+        Assert.assertEquals("Error> Quanti mismatch:", "2", qty);
 
         //  2.14 Verify the Total $698.00
         assertVerifyText(By.xpath("//span//strong[contains(text(),'$698.00')]"), "$698.00");
@@ -210,7 +216,7 @@ public class ElectronicsTest extends Utility {
 
     @After
     public void teardown() {
-        //    closeBrowser();
+            closeBrowser();
     }
 }
 
